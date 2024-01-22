@@ -19,6 +19,7 @@
 
 a {
   font-weight: 500;
+  margin: 20px;
   color: #646cff;
   text-decoration: inherit;
 }
@@ -28,8 +29,8 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* display: flex; */
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
