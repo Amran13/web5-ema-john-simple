@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 const Cart = () => {
     const [cart, setCart] = useState([])
@@ -9,7 +10,23 @@ const Cart = () => {
     } ,[])
 
     const handleDelete = (_id) => {
-        console.log(_id)
+        fetch(`http://localhost:5000/cart/${_id}`, {
+            method : 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.deletedCount > 0){
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Products has deleted",
+                    icon: "success"
+                  });
+                  const remaining = cart.filter(item => item._id !== _id)
+                  setCart(remaining)
+            }
+        })
+        .catch(err => console.error(err))
     }
     return (
         <div>
