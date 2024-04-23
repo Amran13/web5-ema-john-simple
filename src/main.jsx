@@ -7,6 +7,7 @@ import Home from './Components/Home/Home.jsx'
 import Order from './Components/Order/Order.jsx'
 import OrderSummery from './Components/Order-Summery/OrderSummery.jsx'
 import Login from './Components/Login/Login.jsx'
+import Cart from './Components/Cart/Cart.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,12 @@ const router = createBrowserRouter([
       },
       {
         path : '/order-summery', 
-        element : <OrderSummery></OrderSummery>
+        element : <OrderSummery></OrderSummery>,
+        
+      },
+      {
+        path : '/cart',
+        element : <Cart></Cart>
       },
       {
         path : '/login', 
