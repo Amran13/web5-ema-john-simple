@@ -17,7 +17,7 @@ const Order = () => {
             <div className='grid grid-cols-12'>
                 <div className='grid grid-cols-3 col-span-9 gap-6'>
                     {
-                        products.map(item => <Product key={item.productId} product={item}></Product>)
+                        products.map(item => <Product key={item._id} product={item}></Product>)
                     }
                 </div>
                 <div className='col-span-3'>

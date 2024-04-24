@@ -12,7 +12,7 @@ const Header = () => {
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                         <Link to="/">Home</Link>
                         <Link to="/order">Order</Link>
-                        <Link to="/order-summery">Order summery</Link>
+                        <Link to="/cart">Cart</Link>
                         <Link to="/login">Login</Link>
                     </ul>
                 </div>
@@ -22,7 +22,7 @@ const Header = () => {
                 <ul className="menu menu-horizontal px-1">
                     <Link to="/">Home</Link>
                     <Link to="/order">Order</Link>
-                    <Link to="/order-summery">Order summery</Link>
+                        <Link to="/cart">Cart</Link>
                     <Link to="/login">Login</Link>
                 </ul>
             </div>
