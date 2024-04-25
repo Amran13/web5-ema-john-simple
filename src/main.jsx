@@ -8,6 +8,7 @@ import Order from './Components/Order/Order.jsx'
 import OrderSummery from './Components/Order-Summery/OrderSummery.jsx'
 import Login from './Components/Login/Login.jsx'
 import Cart from './Components/Cart/Cart.jsx'
+import Provider from './Components/Provider/Provider.jsx'
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,9 @@ const router = createBrowserRouter([
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+  <Provider>
     <RouterProvider router={router} />
-  // <React.StrictMode>
-  // </React.StrictMode>,
+  </Provider>
+  </React.StrictMode>,
 )

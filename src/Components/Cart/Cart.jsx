@@ -1,34 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import OrderSummery from '../Order-Summery/OrderSummery';
+import { MyContext } from '../Provider/Provider';
 
 const Cart = () => {
-    const [cart, setCart] = useState([])
-    useEffect(() => {
-        fetch('http://localhost:5000/cart')
-            .then(res => res.json())
-            .then(data => setCart(data))
-    }, [])
-
-    const handleDelete = (_id) => {
-        fetch(`http://localhost:5000/cart/${_id}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if (data.deletedCount > 0) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Products has deleted",
-                        icon: "success"
-                    });
-                    const remaining = cart.filter(item => item._id !== _id)
-                    setCart(remaining)
-                }
-            })
-            .catch(err => console.error(err))
-    }
+    const {name, cart, handleDelete, handleDeleteAll, total, totalShippingCharge} = useContext(MyContext)
+    
     return (
         <div>
             <h2 className='text-4xl font-bold text-center'>Cart Page {cart.length} </h2>
@@ -51,7 +28,7 @@ const Cart = () => {
                     }
                 </div>
                 <div className='col-span-1'>
-                    <OrderSummery></OrderSummery>
+                    <OrderSummery cart={cart} handleDeleteAll={handleDeleteAll} total={total} totalShippingCharge={totalShippingCharge} ></OrderSummery>
                 </div>
             </div>
         </div>
