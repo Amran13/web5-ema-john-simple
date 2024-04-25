@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, json, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import { MyContext } from '../Provider/Provider';
 
 const Product = ({ product }) => {
-    const {handleBuy, handleTest} = useContext(MyContext)
+    const {handleBuy} = useContext(MyContext)
     const { _id, category, name, seller, price, img } = product;
 
 

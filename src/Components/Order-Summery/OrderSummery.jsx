@@ -1,16 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
+import React from 'react';
 
-const OrderSummery = ( {cart, handleDeleteAll, total, totalShippingCharge} ) => {
-    // const [cart, setCart] = useState([])
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/cart')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setCart(data)
-    //         })
-    // }, [])
-    // console.log(cart, handleDeleteAll, total)
+const OrderSummery = ({ cart, handleDeleteAll, total, totalShippingCharge }) => {
 
     return (
         <div className='bg-orange-200 flex flex-col justify-center items-center py-8'>
@@ -21,10 +11,13 @@ const OrderSummery = ( {cart, handleDeleteAll, total, totalShippingCharge} ) => 
                 <p> Shipping Charge : ${totalShippingCharge || 0} </p>
                 <p>Tax : ${(total * 20) / 100 || 0} </p>
                 <h3>Grand Total : ${total - ((total * 20) / 100) || 0} </h3>
-                <div className='pt-12 space-y-4'>
-                    <button onClick={handleDeleteAll} className='btn bg-red-500 hover:bg-red-600 block btn-wide border-none'>Clear Cart</button>
-                    <button className='btn bg-orange-400 hover:bg-orange-500 block btn-wide border-none'>Proceed checkout</button>
-                </div>
+                {
+                    cart.length > 0 && <div className='pt-12 space-y-4'>
+                        <button onClick={handleDeleteAll} className='btn bg-red-500 hover:bg-red-600 block btn-wide border-none'>Clear Cart</button>
+                        <button className='btn bg-orange-400 hover:bg-orange-500 block btn-wide border-none'>Proceed checkout</button>
+                    </div>
+                }
+                
             </div>
         </div>
     );

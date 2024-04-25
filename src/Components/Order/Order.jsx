@@ -4,8 +4,9 @@ import OrderSummery from '../Order-Summery/OrderSummery';
 import { MyContext } from '../Provider/Provider';
 
 const Order = () => {
-    const {cart,  handleDeleteAll, total, totalShippingCharge} = useContext(MyContext)
+    const { cart, handleDeleteAll, total, totalShippingCharge } = useContext(MyContext)
     const [products, setProducts] = useState([])
+    const [isClicked, setIsClicked] = useState(false)
     useEffect(() => {
         fetch('http://localhost:5000/products')
             .then(res => res.json())
@@ -20,11 +21,16 @@ const Order = () => {
             <div className='grid grid-cols-12'>
                 <div className='grid grid-cols-3 col-span-9 gap-6'>
                     {
-                        products.map(item => <Product key={item._id} product={item}></Product>)
+                        isClicked ? products.map(item => <Product key={item._id} product={item}></Product>) :
+                            products.slice(0, 24).map(item => <Product key={item._id} product={item}></Product>)
+                    }
+                    {
+                        isClicked ||
+                            <button onClick={() => setIsClicked(!isClicked)} className='btn btn-primary'>See More</button>
                     }
                 </div>
                 <div className='col-span-3'>
-                    <OrderSummery  cart={cart} handleDeleteAll={handleDeleteAll} total={total} totalShippingCharge={totalShippingCharge}></OrderSummery>
+                    <OrderSummery cart={cart} handleDeleteAll={handleDeleteAll} total={total} totalShippingCharge={totalShippingCharge}></OrderSummery>
                 </div>
 
             </div>

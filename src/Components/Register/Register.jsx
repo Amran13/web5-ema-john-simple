@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
+import { Link } from 'react-router-dom';
 
-const Login = () => {
-    const handleLogin = () => {
+
+const Register = () => {
+    const handleRegister = () => {
 
     }
     return (
@@ -13,8 +14,14 @@ const Login = () => {
                     <img className='w-full' src={img} alt="" />
                 </div>
                 <div className="card shrink-0 w-1/2 max-w-lg shadow-2xl bg-base-100">
-                    <form onSubmit={handleLogin} className="card-body">
-                        <h1 className="text-3xl text-center font-bold">Login</h1>
+                    <form onSubmit={handleRegister} className="card-body">
+                        <h1 className="text-3xl text-center font-bold">Register</h1>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input type="text" name='name' placeholder="Name" className="input input-bordered" required />
+                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -26,14 +33,11 @@ const Login = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" name='password' placeholder="password" className="input input-bordered" required />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn bg-orange-500 hover:bg-orange-600">Login</button>
+                            <button className="btn bg-orange-500 hover:bg-orange-600">Register</button>
                         </div>
-                        <span className='mt-4'>New to Car Doctor? <Link to="/register">REGISTER</Link> </span>
+                        <span className='mt-4'>Already have an account? <Link to="/login">LOGIN</Link> </span>
                     </form>
                 </div>
             </div>
@@ -41,4 +45,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;

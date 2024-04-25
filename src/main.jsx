@@ -9,36 +9,45 @@ import OrderSummery from './Components/Order-Summery/OrderSummery.jsx'
 import Login from './Components/Login/Login.jsx'
 import Cart from './Components/Cart/Cart.jsx'
 import Provider from './Components/Provider/Provider.jsx'
+import AuthProvider from './Components/Provider/AuthProvider.jsx'
+import Register from './Components/Register/Register.jsx'
+
+
+
 
 const router = createBrowserRouter([
   {
-    path : '/',
-    element : <App></App>,
-    children : [
+    path: '/',
+    element: <App></App>,
+    children: [
       {
-        path : '/', 
-        element : <Home></Home>
+        path: '/',
+        element: <Home></Home>
       },
       {
-        path : '/order',
-        element : <Order></Order>
+        path: '/order',
+        element: <Order></Order>
       },
       {
-        path : '/order-summery', 
-        element : <OrderSummery></OrderSummery>,
-        
+        path: '/order-summery',
+        element: <OrderSummery></OrderSummery>,
+
       },
       {
-        path : '/cart',
-        element : <Cart></Cart>
+        path: '/cart',
+        element: <Cart></Cart>
       },
       {
-        path : '/login', 
-        element : <Login></Login>
+        path: '/login',
+        element: <Login></Login>
       },
       {
-        path : '*',
-        element : <div>Not Found</div>
+        path: '/register',
+        element: <Register></Register>
+      },
+      {
+        path: '*',
+        element: <div>Not Found</div>
       }
 
     ]
@@ -48,8 +57,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-  <Provider>
-    <RouterProvider router={router} />
-  </Provider>
+    <AuthProvider>
+      <Provider>
+        <RouterProvider router={router} />
+      </Provider>
+    </AuthProvider>
   </React.StrictMode>,
 )
