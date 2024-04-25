@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MyContext } from '../Provider/Provider';
+import { AuthContext } from '../Provider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({ product }) => {
+    const {user} = useContext(AuthContext)
     const {handleBuy} = useContext(MyContext)
     const { _id, category, name, seller, price, img } = product;
 
+    const navigate = useNavigate()
 
     
     return (

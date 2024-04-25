@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Header = () => {
+    const {logOut, user} = useContext(AuthContext)
+    const handleLogOut = () => {
+        logOut()
+        .then(res => {
+            Swal.fire({
+                title: "Logged Out",
+                text: "This item has already added to the cart!",
+                icon: "success"
+            });
+        })
+        .catch(err => {
+            console.error(err)
+        })
+    }
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -27,7 +43,10 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {
+                    user && <div> {user.email} </div>
+                }
+                <button onClick={handleLogOut} className='btn'>LogOut</button>
             </div>
         </div>
     );

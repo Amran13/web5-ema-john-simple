@@ -1,28 +1,34 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from './AuthProvider';
 
 
 export const MyContext = createContext()
 
 const Provider = ({ children }) => {
+    const { user } = useContext(AuthContext)
     const [cart, setCart] = useState([])
     useEffect(() => {
         fetch('http://localhost:5000/cart')
             .then(res => res.json())
             .then(data => setCart(data))
     }, [cart])
-    
-    
+
+
     const handleTest = () => {
         return () => {
             console.log('hello there')
         }
     }
-    
+
     const handleBuy = (_id, product) => {
+        
         const navigate = useNavigate()
         return () => {
+            if (!user) {
+                return navigate('/login')
+            }
             console.log('clicked')
             const res = cart.find(item => item._id == _id)
             console.log(res, _id)

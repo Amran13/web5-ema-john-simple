@@ -11,6 +11,7 @@ import Cart from './Components/Cart/Cart.jsx'
 import Provider from './Components/Provider/Provider.jsx'
 import AuthProvider from './Components/Provider/AuthProvider.jsx'
 import Register from './Components/Register/Register.jsx'
+import Private from './Components/Protected/Private.jsx'
 
 
 
@@ -30,12 +31,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/order-summery',
-        element: <OrderSummery></OrderSummery>,
+        element: <Private> <OrderSummery></OrderSummery> </Private>,
 
       },
       {
         path: '/cart',
-        element: <Cart></Cart>
+        element: <Private> <Cart></Cart> </Private>
       },
       {
         path: '/login',

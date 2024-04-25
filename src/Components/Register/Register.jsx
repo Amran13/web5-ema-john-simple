@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import img from '../../assets/images/login/login.svg'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 
 const Register = () => {
-    const handleRegister = () => {
-
+    const {createUser} = useContext(AuthContext)
+    const handleRegister = (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name, email, password)
+        createUser(email, password)
+        .then(res => {
+            if(res.user){
+                Swal.fire({
+                    title: "Logged In",
+                    text: "This item has already added to the cart!",
+                    icon: "success"
+                });
+            }
+        })
+        .catch(err => {
+            Swal.fire({
+                title: "Oops!",
+                text: err,
+                icon: "error"
+            });
+        })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
