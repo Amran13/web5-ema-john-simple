@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from './AuthProvider';
 
@@ -7,7 +7,7 @@ import { AuthContext } from './AuthProvider';
 export const MyContext = createContext()
 
 const Provider = ({ children }) => {
-    const { user } = useContext(AuthContext)
+    const { user, loading, setLoading } = useContext(AuthContext)
     const [cart, setCart] = useState([])
     useEffect(() => {
         fetch('http://localhost:5000/cart')
@@ -16,18 +16,15 @@ const Provider = ({ children }) => {
     }, [cart])
 
 
-    const handleTest = () => {
-        return () => {
-            console.log('hello there')
-        }
-    }
-
     const handleBuy = (_id, product) => {
-        
+        const location = useLocation()
         const navigate = useNavigate()
+
         return () => {
             if (!user) {
-                return navigate('/login')
+                return (
+                    navigate('/login')
+                )
             }
             console.log('clicked')
             const res = cart.find(item => item._id == _id)
@@ -124,14 +121,12 @@ const Provider = ({ children }) => {
         })
     }
     const sharedInfo = {
-        name: 'akash batash',
         cart,
         handleBuy,
         handleDelete,
         handleDeleteAll,
         total,
         totalShippingCharge,
-        handleTest
     }
     return (
         <MyContext.Provider value={sharedInfo}>

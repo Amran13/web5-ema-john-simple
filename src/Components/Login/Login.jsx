@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 
 const Login = () => {
     const {loginUser} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location)
     const handleLogin = (e) => {
         e.preventDefault()
         const form = e.target;
@@ -19,6 +22,7 @@ const Login = () => {
                     text: "This item has already added to the cart!",
                     icon: "success"
                 });
+                navigate(`${location?.state ? location.state : '/order'}`)
             }
         })
         .catch(err => {

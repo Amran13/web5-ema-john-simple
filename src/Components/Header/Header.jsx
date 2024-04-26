@@ -44,9 +44,9 @@ const Header = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user && <div> {user.email} </div>
+                    user ? <div> {user.email}<button onClick={handleLogOut} className='btn'>LogOut</button> </div> : <Link to="/login" className='btn'>LogIn</Link>
                 }
-                <button onClick={handleLogOut} className='btn'>LogOut</button>
+                
             </div>
         </div>
     );
