@@ -12,7 +12,7 @@ const Order = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://ema-john-simple-server-4uf0tefwb-amrans-projects-495a8d71.vercel.app/products')
             .then(res => res.json())
             .then(data => {
                 setProducts(data)
@@ -41,10 +41,10 @@ const Order = () => {
                     </div>
                 }
             </div>
-                {
-                    isClicked ||
-                    <div className='text-center my-6'><button onClick={() => setIsClicked(!isClicked)} className='btn btn-primary btn-wide'>See More</button></div>
-                }
+            {
+                isClicked ||
+                <div className='text-center my-6'><button onClick={() => setIsClicked(!isClicked)} className='btn btn-primary btn-wide'>See More</button></div>
+            }
         </div>
     );
 };

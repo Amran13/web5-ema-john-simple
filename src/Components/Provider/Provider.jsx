@@ -10,7 +10,7 @@ const Provider = ({ children }) => {
     const { user, loading, setLoading } = useContext(AuthContext)
     const [cart, setCart] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/cart')
+        fetch('https://ema-john-simple-server-4uf0tefwb-amrans-projects-495a8d71.vercel.app/cart')
             .then(res => res.json())
             .then(data => setCart(data))
     }, [cart])
@@ -37,7 +37,7 @@ const Provider = ({ children }) => {
                 });
             } else {
                 console.log('fetching')
-                fetch('http://localhost:5000/cart', {
+                fetch('https://ema-john-simple-server-4uf0tefwb-amrans-projects-495a8d71.vercel.app/cart', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -61,7 +61,7 @@ const Provider = ({ children }) => {
     }
 
     const handleDelete = (_id) => {
-        fetch(`http://localhost:5000/cart/${_id}`, {
+        fetch(`https://ema-john-simple-server-4uf0tefwb-amrans-projects-495a8d71.vercel.app/cart/${_id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -91,7 +91,7 @@ const Provider = ({ children }) => {
             confirmButtonText: "Yes, Delete it"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch('http://localhost:5000/cart', {
+                fetch('https://ema-john-simple-server-4uf0tefwb-amrans-projects-495a8d71.vercel.app/cart', {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
