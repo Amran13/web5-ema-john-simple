@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import img from '../../assets/images/login/login.svg'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 const Register = () => {
+    const navigate = useNavigate()
     const {createUser} = useContext(AuthContext)
     const handleRegister = (e) => {
         e.preventDefault()
@@ -16,11 +18,13 @@ const Register = () => {
         createUser(email, password)
         .then(res => {
             if(res.user){
+                console.log('inside registed')
                 Swal.fire({
-                    title: "Logged In",
+                    title: "Registered User!",
                     text: "This item has already added to the cart!",
                     icon: "success"
                 });
+                navigate('/order')
             }
         })
         .catch(err => {
