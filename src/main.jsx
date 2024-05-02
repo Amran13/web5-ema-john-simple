@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -12,7 +12,6 @@ import Provider from './Components/Provider/Provider.jsx'
 import AuthProvider from './Components/Provider/AuthProvider.jsx'
 import Register from './Components/Register/Register.jsx'
 import Private from './Components/Protected/Private.jsx'
-
 
 
 
@@ -32,7 +31,6 @@ const router = createBrowserRouter([
       {
         path: '/order-summery',
         element: <Private> <OrderSummery></OrderSummery> </Private>,
-
       },
       {
         path: '/cart',

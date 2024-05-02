@@ -12,7 +12,7 @@ const Order = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch('https://ema-john-simple-server-4uf0tefwb-amrans-projects-495a8d71.vercel.app/products')
+        fetch('https://ema-john-simple-server-eta.vercel.app/products')
             .then(res => res.json())
             .then(data => {
                 setProducts(data)
